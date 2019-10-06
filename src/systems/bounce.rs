@@ -51,7 +51,11 @@ impl<'s> System<'s> for BounceSystem {
                     if (paddle.side == Side::Left && ball.velocity[0] < 0.0)
                         || (paddle.side == Side::Right && ball.velocity[0] > 0.0)
                     {
-                        ball.velocity[0] = -ball.velocity[0];
+                        // println!("Before Velocity {}", ball.velocity[0]);
+                        let a = ball.velocity[0] * 1.1;
+
+                        // println!("Added Velocity {}", a);
+                        ball.velocity[0] = -a;
                     }
                 }
             }

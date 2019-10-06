@@ -6,7 +6,7 @@ use amethyst::{
     ui::UiText,
 };
 
-use crate::pong::{Ball, ScoreBoard, ScoreText, ARENA_WIDTH};
+use crate::pong::{Ball, ScoreBoard, ScoreText, ARENA_WIDTH, BALL_VELOCITY_X};
 
 #[derive(SystemDesc)]
 pub struct WinnerSystem;
@@ -49,7 +49,15 @@ impl<'s> System<'s> for WinnerSystem {
       };
 
       if did_hit {
-        ball.velocity[0] = -ball.velocity[0];
+        println!("Velocity: {}", ball.velocity[0]);
+
+
+        let new_velocity = match ball.velocity[0] {
+          x if x > 0.0 => -BALL_VELOCITY_X,
+          _ => BALL_VELOCITY_X
+        };
+
+        ball.velocity[0] = new_velocity;
         transform.set_translation_x(ARENA_WIDTH / 2.0);
 
         println!(
