@@ -6,7 +6,6 @@ use amethyst::{
     input::{InputHandler, StringBindings},
 };
 
-
 #[derive(SystemDesc)]
 pub struct PaddleSystem;
 
